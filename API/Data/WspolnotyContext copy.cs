@@ -12,7 +12,6 @@ namespace API.Data
             var serverVersion = new MySqlServerVersion(new Version(8, 0));
             optionsBuilder.UseMySql(connectionString, serverVersion);
         }
-
-        public DbSet<Wspolnota> Wspolnoty { get; set; }
+        public DbSet<Wspolnota> wspolnoty { get; set; }
     }
 }
