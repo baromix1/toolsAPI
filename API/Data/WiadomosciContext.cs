@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
-    public class WspolnotyContext : DbContext
+    public class WiadomosciContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -13,6 +13,6 @@ namespace API.Data
             optionsBuilder.UseMySql(connectionString, serverVersion);
         }
 
-        public DbSet<Wspolnota> wspolnoty { get; set; }
+        public DbSet<Wiadomosc> wiadomosci { get; set; }
     }
 }
