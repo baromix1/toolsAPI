@@ -1,6 +1,6 @@
 namespace API.Entities
 {
-    public class KomentarzForum
+    public class KomentarzForum : BaseEntity
     {
         public required int IdUzytkownika { get; set; }
         public required int IdPosta { get; set; }
