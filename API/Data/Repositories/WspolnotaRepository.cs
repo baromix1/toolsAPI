@@ -13,7 +13,11 @@ namespace API.Data
         }
 
         public async Task<Wspolnota> GetWspolnotyByIdAsync(int id){
-            return await _context.wspolnoty.SingleOrDefaultAsync(p=>p.id==id);
+
+#pragma warning disable CS8603 // Possible null reference return.
+            return await _context.wspolnoty.SingleOrDefaultAsync(p=>p.Id==id);
+#pragma warning restore CS8603 // Possible null reference return.
+
         }
     }
 }
