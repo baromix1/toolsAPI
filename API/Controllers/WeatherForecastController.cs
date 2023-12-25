@@ -6,6 +6,7 @@ namespace API.Controllers;
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
+    string x = "xd";
     private static readonly string[] Summaries = new[]
     {
 
