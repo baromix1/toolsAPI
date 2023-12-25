@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
-    public class WspolnotyContext : DbContext
+    public class KomentarzeOfertContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -12,6 +12,6 @@ namespace API.Data
             var serverVersion = new MySqlServerVersion(new Version(8, 0));
             optionsBuilder.UseMySql(connectionString, serverVersion);
         }
-        public DbSet<Wspolnota> wspolnoty { get; set; }
+        public DbSet<KomentarzOferty> komentarzeOferty { get; set; }
     }
 }
