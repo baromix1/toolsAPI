@@ -16,7 +16,7 @@ namespace API.Data
         public DbSet<HistoriaTransakcji> historieTransakcji { get; set; }
         public DbSet<KomentarzForum> komentarzeForum { get; set; }
         public DbSet<KomentarzOferty> komentarzeOferty { get; set; }
-        public DbSet<Konwersacja> Konwersacje { get; set; }
+        public DbSet<Konwersacja> konwersacje { get; set; }
         public DbSet<Oferta> oferty { get; set; }
         public DbSet<PostForum> postyForum { get; set; }
         public DbSet<Uzytkownik> uzytkownicy { get; set; }
