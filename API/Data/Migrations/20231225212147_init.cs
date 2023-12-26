@@ -137,7 +137,7 @@ namespace API.Data.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     typ = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    idWspolnoty = table.Column<int>(type: "int", nullable: false)
+                   
                 },
                 constraints: table =>
                 {

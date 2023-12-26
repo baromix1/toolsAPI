@@ -15,6 +15,21 @@ namespace API.Data
             var serverVersion = new MySqlServerVersion(new Version(8, 0));
             optionsBuilder.UseMySql(connectionString, serverVersion);
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UzytkownikWspolnotaAsocjacja>()
+                .HasKey(uwa => new { uwa.idUzytkownika, uwa.idWspolnoty });
+
+            modelBuilder.Entity<UzytkownikWspolnotaAsocjacja>()
+                .HasOne<Uzytkownik>()
+                .WithMany()
+                .HasForeignKey(uwa => uwa.idUzytkownika);
+
+            modelBuilder.Entity<UzytkownikWspolnotaAsocjacja>()
+                .HasOne<Wspolnota>()
+                .WithMany()
+                .HasForeignKey(uwa => uwa.idWspolnoty);
+        }
         public DbSet<Wspolnota> wspolnoty { get; set; }
         public DbSet<HistoriaTransakcji> historieTransakcji { get; set; }
         public DbSet<KomentarzForum> komentarzeForum { get; set; }
