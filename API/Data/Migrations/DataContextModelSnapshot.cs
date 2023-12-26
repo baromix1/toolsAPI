@@ -172,9 +172,6 @@ namespace API.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("idWspolnoty")
-                        .HasColumnType("int");
-
                     b.Property<string>("password")
                         .IsRequired()
                         .HasColumnType("longtext");
