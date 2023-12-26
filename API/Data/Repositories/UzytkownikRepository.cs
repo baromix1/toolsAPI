@@ -1,6 +1,6 @@
 using API.DTOs;
 using API.Entities;
-
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
@@ -14,33 +14,46 @@ namespace API.Data
             _context = context;
         }
 
-        public async Task<Uzytkownik> GetUzytkownikByUsernameAsync(string username)
+        public async Task<userDto> GetUzytkownikByUsernameAsync(string username)
         {
 
 #pragma warning disable CS8603 // Possible null reference return.
-            return await _context.uzytkownicy.SingleOrDefaultAsync(p => p.username == username);
+            var user= await _context.uzytkownicy.SingleOrDefaultAsync(p => p.username == username);
 #pragma warning restore CS8603 // Possible null reference return.
+            return new userDto{
+                idUzytkownika=user.Id,
+                username=user.username
+            };
 
         }
 
-        public async Task<IReadOnlyList<Uzytkownik>> GetUzytkownicyAsync()
+        public async Task<IReadOnlyList<userDto>> GetUzytkownicyAsync()
         {
-            return await _context.uzytkownicy.ToListAsync();
+            List<userDto> lista=new List<userDto>();
+            var users= await _context.uzytkownicy.ToListAsync();
+            foreach(var u in users){
+                userDto temp = new userDto{
+                    idUzytkownika=u.Id,
+                    username=u.username
+                };
+                lista.Add(temp);
+            }
+            return lista;
         }
 
         public async Task<LoggedUserDto> GetUzytkownikByUsernameAndPasswordAsync(string username, string password)
         {
 
-#pragma warning disable CS8603 // Possible null reference return.
+
             var uzytkownik = await _context.uzytkownicy.SingleOrDefaultAsync(p => p.username == username && p.password == password);
-#pragma warning restore CS8603 // Possible null reference return.
+
 
             if (uzytkownik == null)
             {
                 return null;
             }
             var asocjacja = await _context.uzytkownicyWspolnotyAsocjace
-            .Include(p => p.idUzytkownika == uzytkownik.Id)
+            .Where(p => p.idUzytkownika == uzytkownik.Id)
             .ToListAsync();
 
             List<Wspolnota> lista = new List<Wspolnota>();

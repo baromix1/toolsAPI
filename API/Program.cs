@@ -17,6 +17,7 @@ builder.Services.AddDbContext<DataContext>(opt=>{
             opt.UseMySql(connectionString, serverVersion);
 });
 builder.Services.AddScoped<WspolnotaRepository>();
+builder.Services.AddScoped<UzytkownikRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
