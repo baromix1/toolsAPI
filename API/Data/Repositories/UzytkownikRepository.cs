@@ -31,31 +31,34 @@ namespace API.Data
         public async Task<LoggedUserDto> GetUzytkownikByUsernameAndPasswordAsync(string username, string password)
         {
 
-                #pragma warning disable CS8603 // Possible null reference return.
+#pragma warning disable CS8603 // Possible null reference return.
             var uzytkownik = await _context.uzytkownicy.SingleOrDefaultAsync(p => p.username == username && p.password == password);
-                #pragma warning restore CS8603 // Possible null reference return.
+#pragma warning restore CS8603 // Possible null reference return.
 
             if (uzytkownik == null)
             {
-               return null;
+                return null;
             }
             var asocjacja = await _context.uzytkownicyWspolnotyAsocjace
-            .Include(p=>p.idUzytkownika==uzytkownik.Id)
+            .Include(p => p.idUzytkownika == uzytkownik.Id)
             .ToListAsync();
 
             List<Wspolnota> lista = new List<Wspolnota>();
-            foreach(var a in asocjacja){
-               var temp = await _context.wspolnoty.SingleOrDefaultAsync(p=>p.Id==a.idWspolnoty);
-               if(temp!=null){
+            foreach (var a in asocjacja)
+            {
+                var temp = await _context.wspolnoty.SingleOrDefaultAsync(p => p.Id == a.idWspolnoty);
+                if (temp != null)
+                {
                     lista.Add(temp);
-               }
+                }
             }
-            return new LoggedUserDto{
-                username=uzytkownik.username,
-                typ=uzytkownik.typ,
-                listaWspolnot=lista
+            return new LoggedUserDto
+            {
+                username = uzytkownik.username,
+                typ = uzytkownik.typ,
+                listaWspolnot = lista
             };
-            
+
         }
     }
 }
