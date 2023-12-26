@@ -31,9 +31,9 @@ namespace API.Data
         public async Task<LoggedUserDto> GetUzytkownikByUsernameAndPasswordAsync(string username, string password)
         {
 
-#pragma warning disable CS8603 // Possible null reference return.
+
             var uzytkownik = await _context.uzytkownicy.SingleOrDefaultAsync(p => p.username == username && p.password == password);
-#pragma warning restore CS8603 // Possible null reference return.
+
 
             if (uzytkownik == null)
             {
